@@ -184,7 +184,7 @@ const grp3 = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); 
 const at = (x, y, h, st = '') => `<div class="ab" style="left:${x}px;top:${y}px;${st}">${h}</div>`;
 const title = t => `<h1 class="ab" style="left:80px;top:50px;width:1440px;margin:0;font-size:52px;font-weight:400;line-height:1.1;color:#2E3338;letter-spacing:-.005em">${t}</h1>`;
 const foot = i => `<div class="ab" style="left:0;top:862px;width:1600px;height:38px;background:${P.strip};color:#fff;font-size:18px;line-height:38px">
-  <span style="position:absolute;left:80px">Матвей Поляков · Волжский филиал ВолГУ · 27.10.2026</span>
+  <span style="position:absolute;left:80px">Поляков Матвей ·Волжский филиал ВолГУ · 27.10.2026</span>
   <span style="position:absolute;right:80px;font-variant-numeric:tabular-nums">${i} / 9</span></div>`;
 const cap = (x, y, w, t, st = '') => at(x, y, `<div style="width:${w}px;font-size:17px;line-height:1.35;color:${P.mute};${st}">${t}</div>`);
 
@@ -221,13 +221,20 @@ function steps(list, x, y, w, h, state, withSub = false, fs = 26) {
 }
 
 /* ---------- 1. Титул ---------- */
+// 25.10 (просьба автора): легенда классов с титула снята — карта без разбора, классы объясняются по ходу доклада;
+// левая колонка растянута на высоту карты: сверху конференция и имя программы, снизу автор
 function sTitle() {
-  const m = A.base, mw = 800, mh = Math.round(mw * m.h / m.w), mx = 720, my = 120, ppm = mw / m.mW;
-  return at(80, 62, `<div style="font-size:19px;line-height:1.35;color:${P.mute};width:600px">XXXI региональная конференция молодых учёных и исследователей Волгоградской области · 27 октября 2026</div>`)
-    + at(80, 150, `<div style="width:600px">${NAME ? `<div style="font-size:76px;font-weight:600;line-height:1;margin:0 0 18px;color:${P.ink}">${esc(NAME)}</div>` : ''}<div style="font-size:${NAME ? 34 : 46}px;font-weight:600;line-height:1.15;color:${P.ink}">Программа для анализа растительности по&nbsp;сезону снимков Sentinel-2</div></div>`)
-    // направление подготовки и звание научного руководителя — по совету 24.10 (речь_24.10_программа.md, «Титул»)
-    + at(80, 392, `<div style="width:600px;font-size:22px;line-height:1.4;color:${P.ink}"><div style="font-size:26px;font-weight:600;margin:0 0 4px">Матвей Поляков</div>студент 3 курса, направление подготовки<br>05.03.06 «Экология и природопользование»<div style="margin-top:8px">научный руководитель — к. б. н., доцент А. И. Кочеткова</div><div style="margin-top:8px">Волжский филиал ВолГУ</div></div>`)
-    + at(80, 618, `<div style="width:620px"><div style="font-size:19px;color:${P.mute};margin:0 0 10px">10 классов, построенных программой по сезону 2025 г.</div>${legend10()}<div style="font-size:16px;color:${P.mute};margin-top:10px">${legendNote}</div></div>`)
+  const m = A.base, mw = 800, mh = Math.round(mw * m.h / m.w), mx = 720, my = 88, ppm = mw / m.mW;
+  return at(80, my, `<div style="width:600px;height:${mh}px;display:flex;flex-direction:column;justify-content:space-between">
+      <div><div style="font-size:19px;line-height:1.4;color:${P.mute}">XXXI региональная конференция молодых учёных и исследователей Волгоградской области · 27 октября 2026</div>
+        ${NAME ? `<div style="font-size:92px;font-weight:600;line-height:1;letter-spacing:-.02em;margin:62px 0 24px;color:${P.ink}">${esc(NAME)}</div>` : ''}
+        <div style="font-size:${NAME ? 36 : 46}px;font-weight:400;line-height:1.22;color:${P.ink}">Программа для анализа растительности по&nbsp;сезону снимков Sentinel-2</div></div>
+      <!-- направление подготовки и звание научного руководителя — по совету 24.10 (речь_24.10_программа.md, «Титул») -->
+      <div style="border-top:2px solid ${P.line};padding-top:26px;font-size:21px;line-height:1.45;color:${P.mute}">
+        <div style="font-size:32px;font-weight:600;line-height:1.1;margin:0 0 10px;color:${P.ink}">Поляков Матвей</div>
+        студент 3 курса, направление подготовки<br>05.03.06 «Экология и природопользование»
+        <div style="margin-top:10px">научный руководитель — к. б. н., доцент А. И. Кочеткова</div>
+        <div style="margin-top:10px;color:${P.ink}">Волжский филиал ВолГУ</div></div></div>`)
     + at(mx, my, clsMap(mw, 'Карта классов программы на детальном снимке'))
     + at(mx + 14, my + mh - 64, mapMark(ppm, 500))
     + cap(mx, my + mh + 10, mw, `Полигон у Волжского, ≈ 500 га. ${COPER}; подложка — Esri World Imagery`);
