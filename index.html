@@ -184,7 +184,7 @@ const grp3 = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); 
 const at = (x, y, h, st = '') => `<div class="ab" style="left:${x}px;top:${y}px;${st}">${h}</div>`;
 const title = t => `<h1 class="ab" style="left:80px;top:50px;width:1440px;margin:0;font-size:52px;font-weight:400;line-height:1.1;color:#2E3338;letter-spacing:-.005em">${t}</h1>`;
 const foot = i => `<div class="ab" style="left:0;top:862px;width:1600px;height:38px;background:${P.strip};color:#fff;font-size:18px;line-height:38px">
-  <span style="position:absolute;left:80px">Поляков Матвей ·Волжский филиал ВолГУ · 27.10.2026</span>
+  <span style="position:absolute;left:80px">Поляков Матвей · Волжский филиал ВолГУ · 27.10.2026</span>
   <span style="position:absolute;right:80px;font-variant-numeric:tabular-nums">${i} / 9</span></div>`;
 const cap = (x, y, w, t, st = '') => at(x, y, `<div style="width:${w}px;font-size:17px;line-height:1.35;color:${P.mute};${st}">${t}</div>`);
 
@@ -861,7 +861,8 @@ function sCheck() {
 /* ---------- 7. Сравнение ---------- */
 function sCompare() {
   const stair = [
-    ['Один снимок', 'кафедра ВФ ВолГУ — летний Landsat 30 м, ISODATA (2016–2022) · U-Net по снимку, Цимлянское вдхр. (2025) · визуальное дешифрирование (Хаванская)'],
+    // 25.10 вечером (просьба автора): у визуального дешифрирования не фамилия члена жюри, а общий метод — без фамилий
+    ['Один снимок', 'кафедра ВФ ВолГУ — летний Landsat 30 м, ISODATA (2016–2022) · U-Net по снимку, Цимлянское вдхр. (2025) · визуальное дешифрирование — классический метод картографов'],
     ['Две-три даты', 'ФНЦ агроэкологии — BSFI лето/зима, максимум NDVI (Васильченко, 2023)'],
     ['Полный сезон', 'ИКИ РАН — ряды MODIS 250 м, с обучением · <b style="font-weight:600;color:' + P.acc + '">эта работа — 46 дат, 10 м, все сообщества сразу</b>']];
   let s = '';
